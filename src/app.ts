@@ -2,6 +2,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import AutoLoad, { AutoloadPluginOptions } from '@fastify/autoload';
 import { FastifyPluginAsync } from 'fastify';
+import depthLimit from 'graphql-depth-limit';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -15,6 +16,7 @@ const opts: Partial<AutoloadPluginOptions> = {
     return !path.endsWith('index.js');
   },
   forceESM: true,
+  maxDepth: depthLimit(5),
 };
 
 const app: FastifyPluginAsync = async (fastify, _) => {
