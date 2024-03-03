@@ -3,7 +3,7 @@ import { PatchPostInput, Post, PostInput } from "../types/post.js";
 import { PrismaClient } from "@prisma/client";
 import { UUIDType } from "../types/uuid.js";
 
-export const postMutations = {
+export const mutationsPost = {
   CreatePost: {
     type: Post,
       args: { 

@@ -3,7 +3,7 @@ import { CreateProfileInput, PatchProfileInput, Profile } from "../types/profile
 import { PrismaClient } from "@prisma/client";
 import { UUIDType } from "../types/uuid.js";
 
-export const profileMutations = {
+export const mutationsProfile = {
     CreateProfile: {
       type: Profile,
         args: { 
