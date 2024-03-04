@@ -1,13 +1,13 @@
 import { GraphQLNonNull } from "graphql";
-import { PatchPostInput, Post, PostInput } from "../types/post.js";
+import { patchPostInput, post, postInput } from "../types/post.js";
 import { PrismaClient } from "@prisma/client";
 import { UUIDType } from "../types/uuid.js";
 
 export const mutationsPost = {
   CreatePost: {
-    type: Post,
+    type: post,
       args: { 
-        Post: { type: new GraphQLNonNull(PostInput)}
+        post: { type: new GraphQLNonNull(postInput)}
       },
       resolve: async (_obj, args, context: PrismaClient) => { 
         const post = await context.post.create({
@@ -17,19 +17,19 @@ export const mutationsPost = {
       }
     },
     PatchPost: {
-      type: Post,
+      type: post,
       args: { 
-        Post: { type: new GraphQLNonNull(PatchPostInput)}
+        post: { type: new GraphQLNonNull(patchPostInput)}
       },
       resolve: async (_obj, args, context: PrismaClient) => { 
         return await context.post.update({
-          where: { id: args.Post.id },
-          data: args.Post
+          where: { id: args.post.id },
+          data: args.post
         });
       }
     },
     DeletePost: {
-      type: Post,
+      type: post,
       args: {
         id: {
           type: UUIDType

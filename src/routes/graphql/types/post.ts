@@ -1,8 +1,9 @@
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 import { UUIDType } from "./uuid.js";
+import { user } from "./user.js";
 
-export const PostInput = new GraphQLInputObjectType({
-    name: "PostInput",
+export const postInput = new GraphQLInputObjectType({
+    name: "postInput",
     fields: {
       title: {type: new GraphQLNonNull(GraphQLString)},
       content: {type: new GraphQLNonNull(GraphQLString)},
@@ -10,18 +11,19 @@ export const PostInput = new GraphQLInputObjectType({
     }
 });
   
-export const Post = new GraphQLObjectType({
-    name: "Post",
+export const post = new GraphQLObjectType({
+    name: "post",
     fields: {
         id: {type: UUIDType},
         title: {type: new GraphQLNonNull(GraphQLString)},
         content: {type: new GraphQLNonNull(GraphQLString)},
-        authorId: {type: UUIDType}
+        authorId: {type: UUIDType},
+        author: {type: user}
     }
 });
   
-export const PatchPostInput = new GraphQLInputObjectType({
-    name: "PatchPostInput",
+export const patchPostInput = new GraphQLInputObjectType({
+    name: "patchPostInput",
     fields: {
         id: {type: UUIDType},
         title: {type: GraphQLString},

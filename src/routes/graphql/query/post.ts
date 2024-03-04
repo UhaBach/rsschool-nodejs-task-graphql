@@ -1,17 +1,17 @@
 import { GraphQLList } from "graphql";
-import { Post } from "../types/post.js";
+import { post } from "../types/post.js";
 import { PrismaClient } from "@prisma/client";
 import { UUIDType } from "../types/uuid.js";
 
 export const queriesPost = {
-    Posts: {
-        type: new GraphQLList(Post),
+    posts: {
+        type: new GraphQLList(post),
         resolve: async (_obj, _args, context: PrismaClient) => { 
             return await context.post.findMany();
         }
     },
-    PostById: {
-        type: Post,
+    post: {
+        type: post,
         args: {
             id: {
                 type: UUIDType
