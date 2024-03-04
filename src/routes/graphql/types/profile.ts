@@ -1,19 +1,21 @@
 import { GraphQLBoolean, GraphQLInputObjectType, GraphQLInt, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 import { UUIDType } from "./uuid.js";
+import { memberType } from "./member_type.js";
 
-export const Profile = new GraphQLObjectType({
-    name: "Profile",
+export const profile = new GraphQLObjectType({
+    name: "profile",
     fields: {
         id: {type: UUIDType},
         isMale: {type: new GraphQLNonNull(GraphQLBoolean)},
         yearOfBirth: {type: new GraphQLNonNull(GraphQLInt)},
         userId: {type: UUIDType},
-        memberTypeId: {type: new GraphQLNonNull(GraphQLString)}
+        memberTypeId: {type: new GraphQLNonNull(GraphQLString)},
+        memberType: {type: memberType}
     }
 });
 
-export const CreateProfileInput = new GraphQLInputObjectType({
-    name: "CreateProfileInput",
+export const createProfileInput = new GraphQLInputObjectType({
+    name: "createProfileInput",
     fields: {
         isMale: {type: new GraphQLNonNull(GraphQLBoolean)},
         yearOfBirth: {type: new GraphQLNonNull(GraphQLInt)},
@@ -22,8 +24,8 @@ export const CreateProfileInput = new GraphQLInputObjectType({
     }
 });
 
-export const PatchProfileInput = new GraphQLInputObjectType({
-    name: "PatchProfileInput",
+export const patchProfileInput = new GraphQLInputObjectType({
+    name: "catchProfileInput",
     fields: {
         id: {type: UUIDType},
         isMale: {type: GraphQLBoolean},

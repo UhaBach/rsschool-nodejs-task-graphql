@@ -1,35 +1,35 @@
 import { GraphQLNonNull } from "graphql";
-import { CreateProfileInput, PatchProfileInput, Profile } from "../types/profile.js";
+import { createProfileInput, patchProfileInput, profile } from "../types/profile.js";
 import { PrismaClient } from "@prisma/client";
 import { UUIDType } from "../types/uuid.js";
 
 export const mutationsProfile = {
     CreateProfile: {
-      type: Profile,
+      type: profile,
         args: { 
-          Profile: { type: new GraphQLNonNull(CreateProfileInput)}
+          profile: { type: new GraphQLNonNull(createProfileInput)}
         },
         resolve: async (_obj, args, context: PrismaClient) => { 
           const profile = await context.profile.create({
-            data: args.Profile
+            data: args.profile
           });
           return profile;
         }
       },
       PatchProfile: {
-        type: Profile,
+        type: profile,
         args: { 
-          Profile: { type: new GraphQLNonNull(PatchProfileInput)}
+          Profile: { type: new GraphQLNonNull(patchProfileInput)}
         },
         resolve: async (_obj, args, context: PrismaClient) => { 
           return await context.profile.update({
-            where: { id: args.Profile.id },
-            data: args.Profile
+            where: { id: args.profile.id },
+            data: args.profile
           });
         }
       },
       DeleteProfile: {
-        type: Profile,
+        type: profile,
         args: {
           id: {
             type: UUIDType

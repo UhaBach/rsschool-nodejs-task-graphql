@@ -1,13 +1,13 @@
 import { GraphQLNonNull } from "graphql";
-import { CreateUserInput, PatchUserInput, User } from "../types/user.js";
+import { createUserInput, patchUserInput, user } from "../types/user.js";
 import { PrismaClient } from "@prisma/client";
 import { UUIDType } from "../types/uuid.js";
 
 export const mutationsUser = {
-  CreateUser: {
-    type: User,
+  createUser: {
+    type: user,
       args: { 
-        User: { type: new GraphQLNonNull(CreateUserInput)}
+        User: { type: new GraphQLNonNull(createUserInput)}
       },
       resolve: async (_obj, args, context: PrismaClient) => { 
         const user = await context.user.create({
@@ -16,10 +16,10 @@ export const mutationsUser = {
         return user;
       }
     },
-    PatchUser: {
-      type: User,
+    patchUser: {
+      type: user,
       args: { 
-        User: { type: new GraphQLNonNull(PatchUserInput)}
+        User: { type: new GraphQLNonNull(patchUserInput)}
       },
       resolve: async (_obj, args, context: PrismaClient) => { 
         return await context.user.update({
@@ -28,8 +28,8 @@ export const mutationsUser = {
         });
       }
     },
-    DeleteUser: {
-      type: User,
+    deleteUser: {
+      type: user,
       args: {
         id: {
           type: UUIDType

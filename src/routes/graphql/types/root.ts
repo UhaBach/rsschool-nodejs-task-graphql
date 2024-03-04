@@ -1,5 +1,9 @@
-import { MemberType } from "./member_type.js";
-import { Post, PostInput, PatchPostInput } from "./post.js";
-import { Profile, CreateProfileInput, PatchProfileInput } from "./profile.js";
+import { memberType, MemberTypeId } from "./member_type.js";
+import { post, postInput, patchPostInput } from "./post.js";
+import { profile, createProfileInput, patchProfileInput } from "./profile.js";
+import { user, createUserInput, patchUserInput } from "./user.js";
 
-export const rootTypes = [MemberType, Post, PostInput, PatchPostInput, Profile, CreateProfileInput, PatchProfileInput];
+export const rootTypes = [memberType, MemberTypeId,
+    post, postInput, patchPostInput, 
+    profile, createProfileInput, patchProfileInput,
+    user, createUserInput, patchUserInput];
